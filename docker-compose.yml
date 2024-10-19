@@ -1,23 +1,8 @@
-# version: '3.9'
 
 services:
-  # app:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   container_name: server_booking_tickets_container
-  #   ports:
-  #     - "8888:3000"
-  #   environment:
-  #     - MYSQL_HOST=db
-  #     - MYSQL_USER=root
-  #     - MYSQL_PASSWORD=123
-  #     - MYSQL_DB=booking_online_tickets
-  #   volumes:
-  #     - .:/usr/src/app_server
-  #   depends_on:
-  #     - db
 
+services:
+  
   db:
     image: mysql:9.0.1
     container_name: mysql_container
