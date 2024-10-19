@@ -1,22 +1,25 @@
 {
    "development": {
       "username": "root",
-      "password": 123,
+      "password": "123",
+      "port": "2222",
       "database": "booking_online_tickets",
       "host": "127.0.0.1",
       "dialect": "mysql"
    },
    "test": {
       "username": "root",
-      "password": null,
-      "database": "database_test",
+      "password": "123",
+      "port": "2222",
+      "database": "booking_online_tickets",
       "host": "127.0.0.1",
       "dialect": "mysql"
    },
    "production": {
       "username": "root",
-      "password": null,
-      "database": "database_production",
+      "password": "123",
+      "port": "2222",
+      "database": "booking_online_tickets",
       "host": "127.0.0.1",
       "dialect": "mysql"
    }

@@ -1,0 +1,15 @@
+npx sequelize-cli model:generate --name pickup_points --attributes pickup_point_way_id 
+
+npx sequelize-cli model:generate --name employee_types --attributes employee_type_id:string
+npx sequelize-cli model:generate --name employees --attributes employee_id :string  
+
+npx sequelize-cli model:generate --name drivers --attributes driver_id  :string  
+npx sequelize-cli model:generate --name trips --attributes trip_id  :string  
+npx sequelize-cli model:generate --name trip_employees --attributes trip_id  :string  
+
+npx sequelize-cli model:generate --name reviews --attributes review_id :string  
+npx sequelize-cli model:generate --name review_images --attributes review_image_id :string  
+
+
+npx sequelize-cli model:generate --name booking_seats --attributes booking_seat_id :string  
+npx sequelize-cli model:generate --name tickets --attributes ticket_id :string  
