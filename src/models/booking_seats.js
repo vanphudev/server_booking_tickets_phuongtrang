@@ -1,25 +1,94 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class booking_seats extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
+const { Model, DataTypes } = require('sequelize');
+
+class booking_seats extends Model {
+  static associate(models) {
+    
+    booking_seats.belongsTo(models.trips, {
+      foreignKey: 'trip_id',
+      as: 'trip',
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
+    });
+
+  
+    booking_seats.belongsTo(models.vehicle_seats, {
+      foreignKey: 'map_vehicle_seat_id',
+      as: 'vehicleSeat',
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
+    });
   }
-  booking_seats.init({
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    email: DataTypes.STRING
-  }, {
+}
+
+booking_seats.init(
+  {
+    booking_seat_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    trip_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'trips',
+        key: 'trip_id',
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
+    },
+    map_vehicle_seat_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'vehicle_seats',
+        key: 'vehicle_seat_id',
+      },
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
+    },
+    booking_seat_status: {
+      type: DataTypes.TINYINT,
+      allowNull: false,
+      defaultValue: 0,
+      validate: {
+        min: 0,
+        max: 1,
+      },
+    },
+    booking_expiration_time: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    is_locked: {
+      type: DataTypes.TINYINT,
+      allowNull: false,
+      defaultValue: 0,
+      validate: {
+        min: 0,
+        max: 1,
+      },
+    },
+    created_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.fn('NOW'),
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.fn('NOW'),
+      onUpdate: DataTypes.fn('NOW'),
+    },
+  },
+  {
     sequelize,
     modelName: 'booking_seats',
-  });
-  return booking_seats;
-};
+    tableName: 'booking_seats',
+    timestamps: false, 
+  }
+);
+
+module.exports = booking_seats;
